@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moje Pesme</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="../iznad.png" type="image/x-icon">
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #444;
+      color: plum;
+      overflow-x: hidden;
+    }
+
+    nav.navbar {
+      background-color: #7c3aed;
+    }
+
+    .navbar-brand, .nav-link {
+      color: white;
+    }
+
+    .secondlist {
+      margin-top: 50px;
+    }
+
+    .scroll-grid {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 20px 0;
+    }
+
+    .scroll-grid .row {
+      flex-wrap: nowrap;
+      margin-right: 0;
+    }
+
+    .scroll-grid::-webkit-scrollbar {
+      height: 10px;
+    }
+    .scroll-grid::-webkit-scrollbar-thumb {
+      background: plum;
+      border-radius: 10px;
+    }
+    .scroll-grid::-webkit-scrollbar-track {
+      background: #333;
+    }
+
+    .card {
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(12, 122, 123, 0.19);
+      transition: transform 0.3s ease, box-shadow 0.4s ease-in-out;
+
+    }
+    .card:hover .bi-play  {
+       opacity: 1; transition: transform 0.5s ,box-shadow 0.4s ease-in-out, duration 0.4s, timing-functios ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    }
+
+    .card img {
+      height: 160px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .dugmic {
+      background-color: plum;
+      color: white;
+      border-radius: 7px;
+      height: 32px;
+      width: 70px;
+    }
+
+    .bigcard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      max-width: 900px;
+      background: #222;
+      border-radius: 15px;
+      color: #fff;
+      margin: 100px auto;
+      padding: 20px;
+    }
+
+    .lyrics-container {
+      height: 310px;
+      overflow-y: auto;
+      background: #111;
+      color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      line-height: 1.6;
+      font-size: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: plum #333;
+      margin-bottom: 30px;
+    }
+
+    .progress {
+      width: 80%;
+      height: 15px;
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .progress-bar {
+      width: 15%;
+      height: 100%;
+      background: linear-gradient(45deg, plum, #000000);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: #bbb;
+      margin-top: 80px;
+    }
+    svg {
+      color: black;
+      justify-content: center;
+      display: flex;
+      justify-items: center;
+    }
+    .bi-play{position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      color: gray;
+      cursor: pointer;
+      height: 3.5rem;
+      opacity:0%;
+      transition: transform 0.5s ,box-shadow 0.4s ease-in-out
+        }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Moj Plejer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Pesme</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="secondlist container-fluid">
+  <div class="scroll-grid">
+    <div class="row">
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../nocas.png" class="card-img-top" alt="Pesma 1">
+          <div class="card-body">
+            <h5 class="card-title">Iznad Proseka</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../gemini.png" class="card-img-top" alt="Pesma 2">
+          <div class="card-body">
+            <h5 class="card-title">Diskoteka</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../nastiklama.png" class="card-img-top" alt="Pesma 3">
+          <div class="card-body">
+            <h5 class="card-title">Na Stiklama</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../nocasss.png" class="card-img-top" alt="Pesma 4">
+          <div class="card-body">
+            <h5 class="card-title">Nocas</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../pljesak.png" class="card-img-top" alt="Pesma 5">
+          <div class="card-body">
+            <h5 class="card-title">Pljesak</h5>
+            <p class="card-text">NeRo1312321</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../playboyy.png" class="card-img-top" alt="Pesma 6">
+          <div class="card-body">
+            <h5 class="card-title">PlayBoy</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../pljesak.png" class="card-img-top" alt="Pesma 7">
+          <div class="card-body">
+            <h5 class="card-title">Nestvarno</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../negiram.png" class="card-img-top" alt="Pesma 8">
+          <div class="card-body">
+            <h5 class="card-title">Negiram</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../pljesak.png" class="card-img-top" alt="Pesma 5">
+          <div class="card-body">
+            <h5 class="card-title">Pljesak</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+        <div class="card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+          </svg>
+          <img src="../ribalatina.png" class="card-img-top" alt="Pesma 10">
+          <div class="card-body">
+            <h5 class="card-title">Riba Latina</h5>
+            <p class="card-text">NeRo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bigcard">
+  <h3>Trenutno slusate: Iznad Proseka</h3>
+
+  <div class="container ">
+    <div class="row align-items-start ">
+      <div class="col-md-5 col-12 mb-3 mb-md-0">
+        <img src="../nocas.png" alt="NeRo" class="img-fluid rounded shadow" style="max-width: 330px;box-shadow: #0b0b0b 1px 2px 1px">
+      </div>
+      <div class="col-md-7 col-12">
+        <div class="lyrics-container">
+          <p><strong>Refren :</strong> <br>Meni se vrti kako dupe pomera,<br>
+            samo reci bebo sta bi volela,<br>
+            ti bi se provela iznad proseka,<br>
+            dekolte pocepan...<br><br>
+
+            A ti si bas ta,<br>
+            s tobom bih sad,<br>
+            negde u grad,<br>
+            na sat ili dva...<br><br>
+            <strong>Verse 1 :</strong><br>
+            a mami nismo sveci svi ,tek je pola tri<br>
+            moet dodaj mi ,usne probaj mi<br>
+            ma tvoji pokreti tako gode mi<br>
+            i da bacis sve stvari na pod mogla bi<br><br>
+
+            ooo<br>
+            mala pravo je zlo<br>
+            stvari baci na pod<br>
+            od nula do sto radi me to<br>
+            kazes pravi sam skot<br><br>
+
+            crto<br>
+            svu noc crto bi po telu tvom<br>
+            mala puca ko don perignon<br>
+            opet flasa tu pun nam je sto<br>
+            flasa pun nam je sto<br>
+            e e<br><br>
+            <strong>Refren :</strong><br>
+            Meni se vrti kako dupe pomera,<br>
+            samo reci bebo sta bi volela,<br>
+            ti bi se provela iznad proseka,<br>
+            dekolte pocepan...<br><br>
+            A ti si bas ta,<br>
+            s tobom bih sad,<br>
+            negde u grad,<br>
+            na sat ili dva...<br><br>
+            <strong>Verse 2 :</strong><br>
+            S drugim nocas si<br>
+            s drugom nocas sam<br>
+            sve bi probali al si pospana<br>
+            zvoni ajfon mi druga me zove sad<br>
+            a ja nocas njen sutra tvoj na dan<br><br>
+
+            ooo<br>
+            o tako kratka je noc<br>
+            a ti volis kada sam los<br>
+            na kraju tebi cu doc<br><br>
+            <strong>Pre Verse 3 :</strong><br>
+            odavno znamo se<br>
+            znamo se<br>
+            dugo znamo se<br>
+            a ti znas mi bas sve planove<br>
+            a tebi opet malo je<br><br>
+            <strong>Verse 3 :</strong><br>
+            i kad baci mi taj ritam<br>
+            atributima me pipa<br>
+            celo vece je u vodi <br>
+            mala mokra ko nikita<br>
+            tebe ucila je mala<br>
+            sto dalje od huligana<br>
+            a tebe lozi prica<br>
+            skupa koza kulinana<br><br>
+
+            bebo daj mi sanse<br>
+            malo sanse<br>
+            ti si riba prve klase<br>
+            tako delikante<br><br>
+            <strong>Verse 4 :</strong><br>
+            i baci dupe na pod <br>
+            telo ljulja ko brod<br>
+            staljno sumnja u to <br>
+            da s drugom cekacu noc<br>
+            a bez sumnje sam los<br>
+            znam da gotivis to<br>
+            gucci lui vuitton<br>
+            chanel nike i dior<br><br>
+
+            je je je je je je<br>
+            ti si puna adrenalina<br>
+            je je je je je je<br>
+            ne znam dal se zove nina il iva<br>
+            je je je je je je<br>
+            nocas moje krilo tvoja je bina<br>
+            je je je je je je<br>
+            hteo bih obe jer tesko bas biram<br><br>
+            <stron>Refren :</stron><br>
+            Meni se vrti kako dupe pomera,<br>
+            samo reci bebo šta bi volela,<br>
+            ti bi se provela iznad proseka,<br>
+            dekolte pocepan...<br><br>
+
+            A ti si baš ta,<br>
+            s tobom bih sad,<br>
+            negde u grad,<br>
+            na sat ili dva...<br><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div><br>
+  <input type="submit" class="dugmic" value="Pusti">
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Company name
+          </h6>
+          <p>
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Angular</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">React</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Vue</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Laravel</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
