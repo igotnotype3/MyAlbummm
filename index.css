@@ -6,14 +6,17 @@ body {
     overflow-x: hidden;
 }
 
+/* ================= NAVBAR ================= */
 nav.navbar {
     background-color: #7c3aed;
 }
 
-.navbar-brand, .nav-link {
-    color: white;
+.navbar-brand,
+.nav-link {
+    color: white !important;
 }
 
+/* ================= HORIZONTAL SCROLL ================= */
 .secondlist {
     margin-top: 50px;
 }
@@ -32,32 +35,42 @@ nav.navbar {
 .scroll-grid::-webkit-scrollbar {
     height: 10px;
 }
+
 .scroll-grid::-webkit-scrollbar-thumb {
     background: plum;
     border-radius: 10px;
 }
+
 .scroll-grid::-webkit-scrollbar-track {
     background: #333;
 }
 
+/* ================= SMALL CARD ================= */
 .card {
+    position: relative;
+    cursor: pointer;
     background: #222;
     color: #fff;
     border: none;
     border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(12, 122, 123, 0.19);
+    box-shadow:
+            0 4px 8px rgba(251, 255, 255, 0.2),
+            0 6px 20px rgba(12, 122, 123, 0.19);
     transition: transform 0.3s ease, box-shadow 0.4s ease-in-out;
-
-}
-.card:hover .bi-play  {
-    opacity: 1; transition: transform 0.5s ,box-shadow 0.4s ease-in-out, duration 0.4s, timing-functios ease-in-out;
 }
 
 .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.2);
 }
 
+/* ACTIVE CARD – koristi JS */
+.card.active {
+    outline: 2px solid plum;
+    transform: scale(1.07);
+}
+
+/* IMAGE */
 .card img {
     height: 160px;
     object-fit: cover;
@@ -65,19 +78,30 @@ nav.navbar {
     border-top-right-radius: 15px;
 }
 
-.dugmic {
-    background-color: plum;
-    color: white;
-    border-radius: 7px;
-    height: 32px;
-    width: 70px;
+/* ================= PLAY ICON ================= */
+.bi-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    height: 3.5rem;
+    color: gray;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
+.card:hover .bi-play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ================= BIG CARD ================= */
 .bigcard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: auto;
     max-width: 900px;
     background: #222;
     border-radius: 15px;
@@ -86,6 +110,7 @@ nav.navbar {
     padding: 20px;
 }
 
+/* ================= LYRICS ================= */
 .lyrics-container {
     height: 310px;
     overflow-y: auto;
@@ -100,6 +125,7 @@ nav.navbar {
     margin-bottom: 30px;
 }
 
+/* ================= PROGRESS BAR ================= */
 .progress {
     width: 80%;
     height: 15px;
@@ -107,34 +133,40 @@ nav.navbar {
     border-radius: 10px;
     overflow: hidden;
     margin-top: 15px;
+    cursor: pointer;
 }
 
 .progress-bar {
-    width: 15%;
+    width: 0%;
     height: 100%;
     background: linear-gradient(45deg, plum, #000000);
 }
 
+/* ================= BUTTON ================= */
+.dugmic {
+    background-color: plum;
+    color: white;
+    border-radius: 7px;
+    height: 32px;
+    width: 70px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ================= TEXT ================= */
+h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.75rem;
+}
+
+/* ================= FOOTER ================= */
 footer {
     text-align: center;
     padding: 15px;
     color: #bbb;
     margin-top: 80px;
-}
-svg {
-    color: black;
-    justify-content: center;
-    display: flex;
-    justify-items: center;
-}
-.bi-play{position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    color: gray;
-    cursor: pointer;
-    height: 3.5rem;
-    opacity:0%;
-    transition: transform 0.5s ,box-shadow 0.4s ease-in-out
 }
