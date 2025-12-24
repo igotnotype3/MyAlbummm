@@ -1,4 +1,3 @@
-
 const smallCards = document.querySelectorAll(".smallcard");
 
 const bigImg = document.getElementById("big-img");
@@ -6,42 +5,33 @@ const bigTitle = document.getElementById("current-song");
 const lyricsText = document.getElementById("lyrics-text");
 const playBtn = document.getElementById("play-btn");
 const progressBar = document.getElementById("progress-bar");
+const progressContainer = document.querySelector(".progress");
 
 let audio = new Audio();
 let isPlaying = false;
 
-
+// ----------------------------
+// UPDATE BIG CARD (PROMENA PESME)
+// ----------------------------
 function updateBigCard(cardData) {
-    // Promena slike
+    // UI update
     bigImg.src = cardData.img;
-
-    // Promena naslova (title + features ako postoje)
-    bigTitle.textContent = `Trenutno slusate: ${cardData.title}${cardData.features ? " (feat. " + cardData.features + ")" : ""}`;
-
-    // Promena teksta lyrics
+    bigTitle.textContent = `Trenutno slusate: ${cardData.title}`;
     lyricsText.innerHTML = cardData.lyrics;
 
-    // Promena audio fajla
+    // AUDIO RESET (NEMA AUTOPLAY)
     audio.pause();
     audio.src = cardData.audio;
     audio.load();
     audio.currentTime = 0;
 
-
-    // Reset dugmeta
-    if (isPlaying) {
-        audio.play();
-        playBtn.value = "Pauza";
-    } else {
-        playBtn.value = "Pusti";
-    }
-
-    // Reset progress bara
+    isPlaying = false;
+    playBtn.value = "Pusti";
     progressBar.style.width = "0%";
 }
 
 // ----------------------------
-// FUNKCIJA ZA DOBIJANJE PODATAKA SA SMALL CARD-a
+// DOBIJANJE PODATAKA SA CARD-a
 // ----------------------------
 function getCardData(card) {
     return {
@@ -49,26 +39,26 @@ function getCardData(card) {
         title: card.dataset.title || "Nepoznato",
         author: card.dataset.author || "Nepoznato",
         lyrics: card.dataset.lyrics || "Nema dodatih stihova.",
-        audio: card.dataset.audio || "",
-        features: card.dataset.features || "" // opcionalno za feat
+        audio: card.dataset.audio || ""
     };
 }
 
 // ----------------------------
-// EVENT LISTENER NA CLICK
+// CLICK NA SMALL CARD
 // ----------------------------
 smallCards.forEach(card => {
     card.addEventListener("click", () => {
         const data = getCardData(card);
         updateBigCard(data);
 
-        // Aktivna klasa za UI
+        // ACTIVE UI
         smallCards.forEach(c => c.classList.remove("active"));
         card.classList.add("active");
     });
 });
+
 // ----------------------------
-// PLAY / PAUSE KONTROLA
+// PLAY / PAUSE
 // ----------------------------
 playBtn.addEventListener("click", () => {
     if (!audio.src) return;
@@ -85,26 +75,33 @@ playBtn.addEventListener("click", () => {
 });
 
 // ----------------------------
-// UPDATE PROGRESS BARA TOKOM SVIRANJA
+// PROGRESS BAR UPDATE
 // ----------------------------
 audio.addEventListener("timeupdate", () => {
     if (!audio.duration) return;
+
     const percent = (audio.currentTime / audio.duration) * 100;
     progressBar.style.width = percent + "%";
 });
 
 // ----------------------------
-// KLIKOM NA PROGRESS BARRA PREMOTAVANJE
+// SEEK NA KLIK PROGRESS BARA
 // ----------------------------
-const progressContainer = document.querySelector(".progress");
-
 progressContainer.addEventListener("click", (e) => {
-    if (!audio.src) return;
+    if (!audio.duration) return;
 
     const rect = progressContainer.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
-    const width = rect.width;
+    const percent = clickX / rect.width;
 
-    const percent = clickX / width;
     audio.currentTime = percent * audio.duration;
+});
+
+// ----------------------------
+// KAD PESMA ZAVRŠI
+// ----------------------------
+audio.addEventListener("ended", () => {
+    isPlaying = false;
+    playBtn.value = "Pusti";
+    progressBar.style.width = "0%";
 });

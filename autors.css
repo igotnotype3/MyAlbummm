@@ -1,0 +1,40 @@
+/* ===================================================
+   OSTALI AUTORI PAGE – DODATAK NA POSTOJEĆI CSS
+   =================================================== */
+
+.autor-card {
+    background: #222;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow:
+            0 4px 8px rgba(255, 255, 255, 0.1),
+            0 6px 20px rgba(124, 31, 124, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.autor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 0, 255, 0.3);
+}
+
+.autor-name {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: plum;
+    letter-spacing: 1px;
+}
+
+/* Slike autora */
+.autor-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #111;
+    border-radius: 12px;
+}
