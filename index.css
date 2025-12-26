@@ -66,16 +66,16 @@ nav.navbar {
 
 /* ACTIVE CARD – koristi JS */
 .card.active {
-    outline: 2px solid plum;
+    outline: 3px solid plum;
     transform: scale(1.07);
 }
 
 /* IMAGE */
 .card img {
-    height: 160px;
+    height: 110px;
     object-fit: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* ================= PLAY ICON ================= */

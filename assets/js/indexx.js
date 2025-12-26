@@ -3,7 +3,10 @@ const smallCards = document.querySelectorAll(".smallcard");
 const bigImg = document.getElementById("big-img");
 const bigTitle = document.getElementById("current-song");
 const lyricsText = document.getElementById("lyrics-text");
+
 const playBtn = document.getElementById("play-btn");
+const pauseBtn = document.getElementById("pause-btn");
+
 const progressBar = document.getElementById("progress-bar");
 const progressContainer = document.querySelector(".progress");
 
@@ -26,7 +29,6 @@ function updateBigCard(cardData) {
     audio.currentTime = 0;
 
     isPlaying = false;
-    playBtn.value = "Pusti";
     progressBar.style.width = "0%";
 }
 
@@ -56,22 +58,24 @@ smallCards.forEach(card => {
         card.classList.add("active");
     });
 });
-
 // ----------------------------
-// PLAY / PAUSE
+// PUSTI
 // ----------------------------
 playBtn.addEventListener("click", () => {
     if (!audio.src) return;
 
-    if (isPlaying) {
-        audio.pause();
-        playBtn.value = "Pusti";
-    } else {
-        audio.play();
-        playBtn.value = "Pauza";
-    }
+    audio.play();
+    isPlaying = true;
+});
 
-    isPlaying = !isPlaying;
+// ----------------------------
+// PAUZIRAJ
+// ----------------------------
+pauseBtn.addEventListener("click", () => {
+    if (!audio.src) return;
+
+    audio.pause();
+    isPlaying = false;
 });
 
 // ----------------------------
@@ -102,6 +106,5 @@ progressContainer.addEventListener("click", (e) => {
 // ----------------------------
 audio.addEventListener("ended", () => {
     isPlaying = false;
-    playBtn.value = "Pusti";
     progressBar.style.width = "0%";
 });
