@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    container_name: dimitrije-simple-app
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8080:80"
