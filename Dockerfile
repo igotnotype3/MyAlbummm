@@ -5,7 +5,7 @@
 #FROM node:20
 #WORKDIR /app
 #COPY . .
-#CMD ["node", "/indexx.js"]
+#CMD ["node", "/index.js"]
 #
 #
 FROM ubuntu:22.04
