@@ -108,3 +108,4 @@ audio.addEventListener("ended", () => {
     isPlaying = false;
     progressBar.style.width = "0%";
 });
+
